@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			{{name}}
+		</div>
+	</body>
+	<script type="text/javascript">
+		//let(变量)/const(常量)
+		//编程范式：申明式编程
+		const vm=new Vue({
+			el:'#app',//用于挂载要管理的元素
+			data:{ //定义数据
+				name:'杨彬茂',
+				message:'  '
+			}
+		}) 
+	</script>
+</html>

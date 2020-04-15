@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title></title>
+	<style type="text/css">
+		.red{color: red;font-size: 20px;}
+		.blue{color: blue;}
+		.yellow{color: yellow;}
+		.green{color: green;}
+		.actice{background: #0000FF;}
+	</style>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+	<input type="button" v-bind:value="name" @click="btnclick">
+	<p v-html="rawhtml"></p>
+	
+	
+	<p v-if="seen">现在可以看到我</p>
+	
+	
+	<a v-bind:href="url">点我百度</a>
+	
+	<!-- 防治浮动 -->
+	<div @click="click1">
+		<div @click.stop="click2" >
+			{{clicktest}} <p v-bind:value="clicktest"></p>
+		</div>
+	</div>
+	
+	<div v-bind:class="{actice:isactice,green:isgreen,yellow:isyellow}">11</div>
+	<div v-bind:class=[!isactice?"actice":"","green"]>22</div>
+	
+	
+	<div v-if="type==='A'">
+			A
+	</div>
+	<div v-else-if="type==='B'">
+			B
+	</div>
+	<div v-else>ab</div>
+	
+	
+	
+	<div v-show="isshow" v-text="myname"></div>
+	
+	
+	<li v-for="item in items">	{{item.message}} </li>
+	<div v-for="a in items">
+		{{a.message}}
+	</div>
+	
+	<div v-for="a,index in items" :key='index'>
+		{{index+1}}:{{a.message}}
+	</div>
+	<div v-for="value,key in object" :key="key">
+		{{key}}:{{value}}
+	</div>
+	
+	<button type="button" v-on:click="button+=1">{{button}}</button>
+	
+	<button type="button" @click="greet">greet</button>
+	
+	
+	
+	</div>
+	
+	
+	<script type="text/javascript">
+		var app= new Vue({
+			el:'#app',
+			data: {
+				message:"hello word",
+				name:"ybm",
+				rawhtml:'<div style="color: green;">只能输出原生的？</div>',
+				color:'red',
+				myname:'杨彬茂',
+				seen:true,
+				url:"https://www.baidu.com",
+				clicktest:"clicktest1",
+				isyellow:false,
+				isgreen:false,
+				isactice:false,
+				type: "b",
+				isshow:false,
+				items:[
+					{message:'foo'},
+					{message:'bar'}
+				],
+				object:{
+					name:'杨彬茂',
+					age:23
+				},
+				button:0
+			},
+			watch:{
+				name(newval,old){
+					console.log(newval)
+				}
+			},
+		methods:{
+			btnclick:function(){
+				this.name=(this.name==="dsb"?"ybm":"dsb")
+				this.color=this.color==="red"?"blue":"red",
+				this.seen=this.seen==true?false:true,
+				this.clicktest=(this.clicktest==="clicktest1"?"clicktest2":"clicktest1")
+				this.isyellow=this.isyellow?false:true,
+				this.isactice=this.isactice?false:true,
+				this.isshow=this.isshow?false:true
+			},
+			click1:function(){
+				console.log("click1....")
+			},
+			click2:function(){
+				console.log("click2....")
+			},
+			
+			greet: function(){
+				alert('hi')
+			}
+		}
+		})
+		
+	</script>
+	
+</body>
+</html>
