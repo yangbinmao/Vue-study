@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<h2>当前计数：{{counter}}</h2>
+		<p>直接通过变量递减</p>
+		<button @click="counter--">-</button>
+		
+		<p>通过方法递加</p>
+		<button v-on:click="add">+</button>
+		<p>点击事件：v-on:click==@click</p>
+		<p>@是v-on的语法糖</p>
+		<p>通过方法递减</p>
+		<button v-on:click="sub">-</button>
+		
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app=new Vue({
+			el:'#app',
+			data:{
+				counter:0
+			},
+			methods:{
+				// 方法的第一种建立方式
+				add(){
+					this.counter++
+					console.log('add被执行')
+				},
+				// 方法的第二种建立方式
+				sub:function(){
+					this.counter--
+					console.log('sub被执行')
+				}
+			
+			}
+		})
+	</script>
+</body>
+</html>

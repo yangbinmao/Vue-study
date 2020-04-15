@@ -18,10 +18,13 @@
 	const app=new Vue({
 		el:'#app',
 		data:{
-			message:'你好啊',
 			movies:['星际穿越','大话西游','少年派','盗墓空间']
 		}
 	})
+</script>
+<script type="text/javascript">
+	//给Vue对象里面的数组添加数据，是用push方法
+	app.movies.push("海王")
 </script>
 </body>
 </html>
