@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style type="text/css">
+		.red{color: red;}
+		.blue{color: blue;}
+	</style>
+</head>
+<body>
+	
+	<div id="app">
+		<h2 class="red">{{message}}</h2>
+		<h2 :class="colour">{{message}}</h2>
+		<!-- 对象语法：class后面跟的是一个{}对象，相对用的很多 -->
+		<!-- <h2 :class="{class1:boolean,class2:boolean}">{{message}}</h2> -->
+		<h2 :class="{red:isred,blue:isblue}">{{message}}</h2>
+		<!-- 把内容放进函数，用方法返回class形式 -->
+		<h2 :class='getClasses()'>{{message}}</h2>
+		<button @click="btnclick">按钮</button>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el: "#app",
+			data: {
+				message: '你好啊',
+				colour:"red",
+				isred:true,
+				isblue:false
+			},
+			methods:{
+				btnclick(){
+					// this.isred=this.isred==true?false:true
+					this.isred=!this.isred
+				},
+				getClasses(){
+					return {red:this.isred,blue:this.isblue};
+				}
+			}
+		})
+	</script>
+	
+	
+</body>
+</html>

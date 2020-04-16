@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style type="text/css">
+		.color{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="app">
+		<ul>
+			<li v-for="(item,index) in mouves" @click="btnclick()" v-bind:class="{color:iscolor}"> {{index}}:{{item}}</li>
+		</ul>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el: "#app",
+			data: {
+				message: '你好啊',
+				mouves: ['大话西游','西游记',"星际穿越",'盗梦空间'],
+				iscolor:false
+			},
+			methods:{
+				btnclick:function(){
+					this.iscolor=true
+			
+				}
+			}
+		})
+	</script>
+	
+</body>
+</html>

@@ -38,8 +38,18 @@
 				sub:function(){
 					this.counter--
 					console.log('sub被执行')
+					
 				}
 			
+			},
+			beforeCreate:function(){
+				console.log('beforeCreate')
+			}, 
+			created() {
+				console.log("created")
+			},
+			mounted: function(){
+				console.log("mouted")
 			}
 		})
 	</script>

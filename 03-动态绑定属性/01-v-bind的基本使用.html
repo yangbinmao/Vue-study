@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	
+	<div id="app">
+		<!-- 错误做法，这里不可以使用mustache语法-->
+		<!-- mustache语法只能使用在content里面，也就是标签里面写内容区域 -->
+		<!-- <img src="{{imgurl}}" alt=""> -->
+		<!-- 正确的做法 使用 v-bind指令-->
+		<img v-bind:src="imgurl" alt="">
+		<!-- v-bind的语法糖: 就是一个冒号，后面接你要双向绑定的标签 -->
+		<!-- 语法糖写法 -->
+		<a :href="baidu">百度一下</a>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el: "#app",
+			data: {
+				message: '你好啊',
+				imgurl: 'https://img.alicdn.com/tps/i4/TB1aQt3BuH2gK0jSZJnSuuT1FXa.jpg_q90_.webp',
+				baidu: 'http://www.baidu.com'
+			}
+		})
+	</script>
+		
+</body>
+</html>
