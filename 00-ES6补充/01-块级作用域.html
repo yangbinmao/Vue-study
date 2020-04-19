@@ -35,8 +35,10 @@
 	 
 	 //3.没有快级作用域引起的问题：for的块级
 	 var btns=document.getElementsByTagName("button");
-	 for (var i = 0; i < btn.length; i++) {
-	 	btn[i]
+	 for (var i = 0; i < btns.length; i++) {
+	 	btns[i].addEventListener("click",function(){
+			console.log('弟'+i+'个按钮被点击');
+		})
 	 }
 </script>
 
