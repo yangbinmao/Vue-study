@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style type="text/css">
+		.test{
+			
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- <h2 v-bind:style="{key(css属性名字):value(属性值)}">{{message}}</h2> -->
+		<!-- '50px'必须加上单引号，否则是当做一个变量去解析 -->
+		<!-- <h2 v-bind:style="{fontSize:'50px'}">{{message}}</h2> -->
+	
+	
+	 	<!-- finalSize 当成一个变量使用-->
+		<h2 v-bind:style="{fontSize:finalSize,backgroundColor:finalColor}">{{message}}</h2>
+		
+		<h2 v-bind:style="getStyles()">{{message}}</h2>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el: "#app",
+			data: {
+				message: '你好啊',
+				finalSize: '100px',
+				finalColor: 'red'
+			},
+			methods:{
+				getStyles:function(){
+				return	{fontSize:this.finalSize,backgroundColor:this.finalColor}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

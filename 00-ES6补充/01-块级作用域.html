@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<button type="button">按钮1</button>
+	<button type="button">按钮2</button>
+	<button type="button">按钮3</button>
+	<button type="button">按钮4</button>
+	<button type="button">按钮5</button>
+					
+<script type="text/javascript">
+	//1.变量作用域：变量在什么范围内可用
+	// {
+	// 	var name='why';
+	// 	console.log(name);
+	// }
+	// console.log(name);
+	
+	//2.没有快级作用域引起的问题：if的块级
+	// var func;
+	// if(true){
+	// 	var name ='way';
+	// 	func=function(){
+	// 		console.log(name);
+	// 	}
+			// func()
+	// }
+	// func()
+	 // console.log(name);
+	 
+	 //3.没有快级作用域引起的问题：for的块级
+	 var btns=document.getElementsByTagName("button");
+	 for (var i = 0; i < btn.length; i++) {
+	 	btn[i]
+	 }
+</script>
+
+</body>
+</html>

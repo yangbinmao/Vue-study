@@ -6,17 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title></title>
 	<style type="text/css">
-		.red{
-			color: red;
-		}
+		/* .test{font-size: ;} */
 	</style>
 </head>
 <body>
-	
 	<div id="app">
-		<ul>
-			<li v-for="(item,index) in mouves" @click="btnclick(index)" v-bind:class="index==iscolor?'red':''"> {{index}}:{{item}}</li>
-		</ul>
+		<h2 :style="[baseStyle,baseSize]">{{message}}</h2>
 	</div>
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -25,17 +20,16 @@
 			el: "#app",
 			data: {
 				message: '你好啊',
-				mouves: ['大话西游','西游记',"星际穿越",'盗梦空间'],
-				iscolor:-1
-			},
-			methods:{
-				btnclick:function(e){
-					this.iscolor=e
-			
+				baseStyle:{
+					color:'red',
+				},
+				baseSize:{
+					fontSize: "50px"
 				}
-			}
+			},
+			
+	
 		})
 	</script>
-	
 </body>
 </html>

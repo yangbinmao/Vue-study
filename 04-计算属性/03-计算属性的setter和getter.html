@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	
+	<div id="app">
+		<h2>{{fullName}}</h2>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el: "#app",
+			data: {
+				firstName: 'kobe',
+				lastName: 'Bryant'
+			},
+			computed:{
+				// fullName(){
+					//计算属性的简写就是下边这样
+				// 	return this.firstName+' '+this.lastName
+				// }
+				fullName:{
+					//计算属性一般是没有set方法，只读属性,所以直接写简写方式就可以了
+					
+					set:function(newValue){
+					 console.log(newValue);
+					 this.firstName=newValue
+					},
+					get:function(){
+						return this.firstName+' '+this.lastName
+					}
+				},
+				
+			}
+		})
+	</script>
+	
+</body>
+</html>
