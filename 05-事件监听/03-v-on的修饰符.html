@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 1. .stop修饰符的使用：阻止冒泡 -->
+			<p>1. .stop修饰符的使用：阻止冒泡</p>
+			<div @click="divclick">
+				aaa
+				<button @click.stop="btnclick">按钮</button> 
+			</div>
+			<!-- 2. .prevent修饰符使用：阻止默认事件 -->
+			<br>
+			<form action="badiu">
+				<p>2. .prevent修饰符使用：阻止默认事件</p>
+				<input type="submit" value="提交" @click="submtCilck">
+				<input type="submit" value="提交" @click.prevent="submtCilck">
+			</form>
+			
+			<!-- 3. 监听某个键盘的键帽 -->
+			<br>
+			<p> 3. 监听某个键盘的键帽 </p>
+			<input type="text" @keyup="keyUp">
+			<input type="text" @keyup.enter="keyUp">
+			
+			<!-- 4. 监听组件必须接上.native -->
+			<p>4. 监听组件必须接上.native</p>
+			<!-- <cpn @click.native="cpnClick"></cpn> -->
+			
+			<!-- 5. .once修饰符使用 -->
+			<br>
+			<p>5. .once修饰符使用</p>
+			<button @click.once="btn2Click">按钮2</button>
+		</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message: '你好啊',
+		},
+		methods:{
+			btnclick(){
+				console.log('btnclick')
+			},
+			divclick(){
+				console.log('divclick')
+			},
+			submtCilck(){
+				console.log('submtCilck')
+			},
+			keyUp(){
+				console.log("keyUp")
+			},
+			btn2Click(){
+				console.log('btn2Click')
+			}
+		
+			
+		}
+	})
+</script>
+	</body>
+</html>
