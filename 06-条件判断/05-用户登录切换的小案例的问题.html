@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>
+				<!-- input中的key是保证在切换的时候内容是否可以互用，
+				不写这个参数或者参数的内容一样，就表示互用，内容不一样就表示不互用 -->
+				<div v-if="islogin">
+					<label for="username">用户账号：</label>
+					<input type="text" id="username" placeholder="用户账号" key='username'>
+					</div>
+				<div v-else>
+					<label for="email"> 邮箱登录：</label>
+					<input type="text" id="email" placeholder="邮箱账号" key='email'>
+					</div>
+				<button @click="islogin=!islogin">登录切换</button>
+			</h2>
+			
+		</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message: '你好啊',
+			islogin: true,
+			admin: ''
+		},
+	})
+</script>
+	</body>
+</html>

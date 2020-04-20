@@ -34,11 +34,22 @@
 	 // console.log(name);
 	 
 	 //3.没有快级作用域引起的问题：for的块级
-	 var btns=document.getElementsByTagName("button");
-	 for (var i = 0; i < btns.length; i++) {
-	 	btns[i].addEventListener("click",function(){
-			console.log('弟'+i+'个按钮被点击');
-		})
+	 //为什么闭包（立即执行函数）可以解决问题：函数是有自己的一个作用域
+	 // var btns=document.getElementsByTagName("button");
+	 // for (var i = 0; i < btns.length; i++) {
+		// (function(num){
+		// 	btns[i].addEventListener('click',function(){
+		// 		console.log('第'+(num+1)+'个按钮被点击');
+		// 	})
+		// })(i)
+	 // }
+
+	 const btns=document.getElementsByTagName("button");
+	 for (let i = 0; i < btns.length; i++) {
+	 			btns[i].addEventListener('click',function(){
+	 				console.log('第'+(i+1)+'个按钮被点击');
+	 			})
+
 	 }
 </script>
 
