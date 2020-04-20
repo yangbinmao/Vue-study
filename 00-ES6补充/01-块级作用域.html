@@ -14,6 +14,10 @@
 	<button type="button">按钮5</button>
 					
 <script type="text/javascript">
+	
+	//ES5之前因为if和for都没有块级作用域的概念，所以在很多时候，我们都必须借助于function的作用域
+	// 来解决应用外面变量的问题.
+	//ES6中加入了let，它是用if和for的块级作用域
 	//1.变量作用域：变量在什么范围内可用
 	// {
 	// 	var name='why';
@@ -34,9 +38,22 @@
 	 // console.log(name);
 	 
 	 //3.没有快级作用域引起的问题：for的块级
-	 var btns=document.getElementsByTagName("button");
-	 for (var i = 0; i < btn.length; i++) {
-	 	btn[i]
+	 //为什么闭包（立即执行函数）可以解决问题：函数是有自己的一个作用域
+	 // var btns=document.getElementsByTagName("button");
+	 // for (var i = 0; i < btns.length; i++) {
+		// (function(num){
+		// 	btns[i].addEventListener('click',function(){
+		// 		console.log('第'+(num+1)+'个按钮被点击');
+		// 	})
+		// })(i)
+	 // }
+	 
+	 const btns=document.getElementsByTagName("button");
+	 for (let i = 0; i < btns.length; i++) {	 	
+	 			btns[i].addEventListener('click',function(){
+	 				console.log('第'+(i+1)+'个按钮被点击');
+	 			})
+	 	
 	 }
 </script>
 
