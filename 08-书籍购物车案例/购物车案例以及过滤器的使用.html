@@ -3,10 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<style type="text/css">
+			table{
+				border:1px solid #e9e9e9;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+			tr,td{
+				padding: 8px 16px;
+				border: 1px solid #e9e9e9;
+				text-align: left;
+				clear：both
+			}
+			th{
+				background-color: #f7f7f7;
+				color: #5c6b77;
+				font-weight: 600;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="app">
-			<table v-if="books.length>0">
+			<div  v-if="books.length">
+			<table>
 				<thead>
 					<tr>
 						<th>id</th>
@@ -15,7 +34,7 @@
 						<th >价格</th>
 						<th>购买数量</th>
 						<th>操作</th>
-					</th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in books" >
@@ -31,11 +50,11 @@
 							<div v-else>{{value}}</div>
 							</td>
 						<td><button @click="remveBook(item.bookid)">移除</button></td>
-					</tr>
-					<tr><td><div>总金额：{{money|finalPriceFilter}}</div></td></tr>
+					</tr>				
 				</tbody>
-		
 			</table>
+			<div>总金额：{{money|finalPriceFilter}}</div>
+			</div>
 			<div v-else>购物车为空</div>
 		
 		</div>
@@ -134,14 +153,19 @@
 			
 			//高阶函数
 			//filter/map/reduce
+			//1.filte函数使用：对数组按要求进行过滤，返回新的数组
 			//filter中的回调函数有一个要求：必须返回一个Boolean值：
 			//true:当返回true时，函数内部会自动将这次回调的n加入到新的数组中
 			//false:当返回false时，函数的内部会过滤到这次的n
 			const numsOne=[10,25,36,45,200,636,100,44,05,03]
 			let newNumsOne=numsOne.filter(function(n){
-				n<100
+				return	n<100
 			})
 			console.log("newNumsOne",newNumsOne);
+			
+			//2.map函数的使用
+			
+			
 			
 			const nums=[10,25,36,45,200,636,100,44,05,03]
 			//需求1、取出所有小于100的数
