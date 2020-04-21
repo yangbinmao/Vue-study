@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.red{color: red;}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+	
+			<ul>
+				<!-- <li v-for="item,index in mouves" :class="index==iscolor?'red':' '" @click="iscolor=index">{{item}}</li> -->
+				<li v-for="item,index in mouves" 
+						:class="{red:index==iscolor}" 
+						@click="iscolor=index">
+					{{item}}
+				</li>
+			</ul>
+
+
+
+		</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	const app = new Vue({
+		el: "#app",
+		data:{
+			mouves: ['a','b','c','d','e'],
+			iscolor:0
+		},
+	})
+</script>		
+	</body>
+</html>

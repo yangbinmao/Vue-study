@@ -6,8 +6,9 @@
 	</head>
 	<body>
 		<div id="app">
+			<!-- :key的作用主要就是高效的更新更新虚拟DOM -->
 		<ul>
-			<li v-for="item in letters">{{item}}</li>
+			<li v-for="item in letters" :key="item" >{{item}}</li>
 		</ul>
 		
 		
@@ -20,8 +21,17 @@
 				data:{
 					message: '你好啊',
 					letters:['A','B','C','D','E']
-				}
+				},
+				
 		})
+		
+		//app.letters(在哪个数的后面，到第一个参数后面的几位数，插入内容)
+		//插入内容不写就是删除第二个参数对应的个数
+		//在数组的某个位置插入内容
+		app.letters.splice(2,0,'F')
+		//在数组的某个位置开始删除内容。
+		app.letters.splice(3,1)
+		
 		</script>
 	</body>
 </html>
