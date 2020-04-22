@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+<div id="app">
+	<h2>{{message}}</h2>
+	<!-- 1.修饰符：lazy  用户回车或者失去焦点的时候在进行变量的更新-->
+	<input type="text" v-model.lazy="message">
+	<!-- 2.修饰符： number 将传入的值直接是number格式-->
+	<input type="number" v-model.number="age" >
+		<h2>{{age}}---{{typeof age}}</h2>
+	<!-- 3.trim 剥除两边空格 -->
+	 <input type="text" v-model.trim="name">
+	<h2>{{name}}</h2>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	const app = new Vue({
+		el: "#app", 
+		data:{
+			message: '你好啊',
+			age:"",
+			name:' '
+		}
+})
+</script>
+	</body>
+</html>
