@@ -149,45 +149,7 @@
 			
 			
 			
-			//高阶函数
-			//filter/map/reduce
-			//1.filte函数使用：对数组按要求进行过滤，返回新的数组
-			//filter中的回调函数有一个要求：必须返回一个Boolean值：
-			//true:当返回true时，函数内部会自动将这次回调的n加入到新的数组中
-			//false:当返回false时，函数的内部会过滤到这次的n
-			const numsOne=[10,25,36,45,200,636,100,44,05,03]
-			let newNumsOne=numsOne.filter(function(n){
-				return	n<100
-			})
-			console.log("newNumsOne",newNumsOne);
-			
-			//2.map函数的使用
-			
-			
-			
-			const nums=[10,25,36,45,200,636,100,44,05,03]
-			//需求1、取出所有小于100的数
-			let newNums1=[];
-			for (let num of nums) {
-				if(num<100){
-					newNums1.push(num)
-				}
-			}
-			console.log(newNums1);
-			
-			//需求2.取出所有小于100的数乘以2
-			let newNums2=[]
-			for (let num of newNums1) {
-				newNums2.push(num*2)
-			}
-			console.log(newNums2);
-			
-			//需求3、将newNums2中所有数值相加，得到最终结果
-			let finalNum=0;
-			for (let num of newNums2) {
-				finalNum+=num
-			}
-			console.log(finalNum);
+
 		</script>
 	</body>
 </html>
