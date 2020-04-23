@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<counter></counter>
+		
+		<test></test>
+		</div>
+		
+		
+		
+		
+		<template id="counter">
+			<div>
+				<h2><p>{{text}}当前值{{count}}</p></h2>
+				<button @click="count++">+</button>
+				<button @click="sup">-</button>
+			</div>
+		</template>
+		
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	Vue.component('counter',{
+		template: "#counter",
+		//为什么data是一个函数？
+		// 因为如果是个对象，每次返回的时候都是返回的同一个对象的引用地址，对值修改，就修改的是同一个对象
+		//如果是函数的话，每次返回就直接是一个新的函数，也就是新的函数地址，对不同地址的值修改，就不会相互影响
+		data(){
+			return {
+				count: 0,
+				text:"全局组件"
+			}
+		},
+		methods:{
+			sup(){
+				this.count--
+			}
+		}
+		
+	})
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message: '你好啊',
+		},
+		components:{
+			'test':{
+				template:"#counter",
+				data(){
+					return  {
+						count:10,
+						text:"局部组件"
+					}
+				},
+				methods:{
+					sup(){
+						this.count--
+					}
+				}
+			}
+		}
+	})
+</script>
+	</body>
+</html>
