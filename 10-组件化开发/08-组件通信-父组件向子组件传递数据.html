@@ -13,7 +13,9 @@
 		
 <template id="cpn" >
 	<div>
-		<p>{{cmouves}}</p>
+		<ul>
+			<li v-for="item in cmouves">{{item}}</li>
+		</ul>
 		<h2>{{cmessage}}</h2>
 	</div>
 </template>
@@ -22,7 +24,27 @@
 	// 父传子：props 
 	const cpn= {
 			template:'#cpn',
-			props:['cmouves','cmessage'],
+	 // props:['cmouves','cmessage'],
+			props:{
+				//1.类型限制
+				// cmouves: Array,
+				// cmessage: String,
+				//2.提供一些默认值
+				cmessage: {
+					type: [String,Number],//设置属性类型
+					default: 'aaaaaaa'  , //设置默认值
+					required: true ,			//使用组件必须传参数
+				},
+					//类型是对象或者数组时，默认值必须是一个函数
+				cmouves: {
+					type: Array,
+					default(){
+						return []
+					},
+					required: true ,
+					
+				}
+			},
 			data(){
 				return {
 					
