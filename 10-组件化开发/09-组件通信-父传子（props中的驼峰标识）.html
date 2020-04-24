@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{message}}</h2>
+		</div>
+		
+		<template id="cpn">
+				<h2>{{message}}</h2>
+		</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	
+
+	
+	
+	const cpn={
+		template : "",
+		
+		
+	}
+	
+	
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message: '你好啊',
+			info:{
+				name: 'ybm',
+				age: 23,
+				height: 178
+			}
+		},
+		components:{
+			cpn
+		}
+	})
+</script>		
+	</body>
+</html>
