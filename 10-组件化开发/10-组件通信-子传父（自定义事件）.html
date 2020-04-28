@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 父组件模板 -->
+		<div id="app">
+			<div>
+				<cpn @itemclick="cpnClick"> </cpn>
+			</div>
+		</div>
+		
+		<!-- 子组件模板 -->
+		<template id="cpn">
+			<div>			
+				<button v-for="item in categories" 
+				@click="btnClick(item.id)">
+				{{item.name}}
+				</button>
+			</div>
+		</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	//流程
+	//在子组件中，通过$emit()来触发事件
+	//在父组件中，通过v-on来监听子组件事件
+	
+	
+	//1.子组件
+	const cpn={
+		template:"#cpn",
+		data(){
+			return {
+				categories:[
+					{id:'aaa',name:'热门推荐'},
+					{id:'bbb',name:'手机数码'},
+					{id:'ccc',name:'家用家电'},
+					{id:'ddd',name:'电脑办公'},
+				]
+			}
+		},
+		methods:{
+			 btnClick(id){
+				 console.log('子组件获取id:',id);
+				 //发射事件，自定义事件
+					//获取了id现在要传给父组件，通过this.$emit('事件名称',参数)发射事件
+				 this.$emit("itemclick",id)
+			 }
+		}
+	}
+	//2.父组件
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message: '你好啊',
+		},
+		components:{
+			cpn
+		},
+		methods:{
+			cpnClick(item){
+				console.log("cpnClick",item);
+			}
+		}
+	})
+</script>
+	</body>
+</html>

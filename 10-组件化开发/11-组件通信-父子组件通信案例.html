@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+<body>
+		<div id="app">
+			<p>子组件内input得到需求更改后，如果用v-bind就无法对父组件的数据修改
+			，v-bind的其实就是v-bind:value和v-on:input组合的。所以，如果给父组件传值，
+			就把v-on:input的方法具体化。就可以在方法里面用$emit()对父组件发数据，父组件内就用methods创建方法接受，
+			然后在方法内对父组件属性赋值</p>
+			<h2>父组件num1：{{num1}}</h2>
+			<h2>父组件num2：{{num2}}</h2>
+			<h2>{{message}}</h2>
+			<cpn :number1='num1' 
+					 :number2='num2'
+					  @num1change="num1Change" 
+						@num2change="num2Change"/>
+		
+		</div>
+		
+		
+		<template id='cpn'>
+			<div>
+				<h2>props:number1:{{number1}}</h2>
+				<h2>data:dnumber1:{{dnumber1}}</h2>
+				<!-- <input type="text" v-model="dnumber1"> -->
+			dnumber1	<input type="text" v-bind:value="dnumber1" @input.enter="num1Input">
+			<h2>props:number2:{{number2}}</h2>
+			<h2>data:dnumber2:{{dnumber2}}</h2>
+				<!-- <input type="text" v-model="dnumber2"> -->
+				dnumber2<input type="text" :value="dnumber2" @input="num2Input">
+					
+			</div>
+		</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	const app = new Vue({
+		el: "#app",
+		data:{
+			message:'你好啊',
+			num1:1,
+			num2:0
+		},
+		methods:{
+			num1Change(cnum1){
+				
+				console.log("5.父组件接受子组件dnumber1赋值给num1:",cnum1);
+				console.log("父组件接受的num1格式",typeof cnum1);
+				cnum1=parseInt(cnum1)
+				console.log("6.修改父组件对应的值",cnum1);
+				this.num1=cnum1;
+
+			},
+			num2Change(cnum2){
+				cnum2=parseInt(cnum2)
+				console.log("父组件接受num2:",cnum2);
+				console.log("6.修改父组件对应的值",cnum2);
+				this.num2=cnum2;
+			}
+		},
+		components:{
+			cpn:{
+				template:'#cpn',
+				data(){
+					return{
+						dnumber1: this.number1,
+						dnumber2: this.number2
+
+					}
+				},
+				props:{
+					number1:Number,
+					number2:Number
+				},
+				methods:{
+					num1Input(event){
+						console.log("1.收到修改信息");
+						console.log("2.修改子组件中dnumber1的值为",event.target.value);
+						this.dnumber1=event.target.value;
+						
+						console.log("3.子组件接收到输入dnumber1:",this.dnumber1);
+						console.log("4.传递给父组件num1change方法,传递内容",this.dnumber1);
+						this.$emit("num1change",this.dnumber1);
+						// 使num2是num1的一百倍大
+						this.dnumber2=this.dnumber1 * 100
+						console.log("4.传递给父组件num2change方法(需求2),传递内容",this.dnumber2);
+						this.$emit('num2change',this.dnumber2)
+					},
+					num2Input(event){
+						
+						this.dnumber2=event.target.value;
+						console.log("子组件接收到输入num2:",this.dnumber2);
+						this.$emit("num2change",this.dnumber2);
+						
+						// 使num2是num1的一百倍小
+						this.dnumber1=this.dnumber2 / 100
+						console.log("4.传递给父组件num1change方法(需求2),传递内容",this.dnumber1);
+						this.$emit('num1change',this.dnumber1)
+					}
+				}
+			}
+		},
+	
+	})
+</script>
+</body>
+</html>
