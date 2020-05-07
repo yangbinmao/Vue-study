@@ -18,3 +18,9 @@ p.run();
 //4.导入default
 import addr from './aaa.js'
 console.log(addr);
+
+//2.统一全局导入
+import * as aaa from './aaa.js';
+
+console.log(aaa.flag);
+console.log(aaa.height)
