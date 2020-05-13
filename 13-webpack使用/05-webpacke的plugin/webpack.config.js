@@ -1,6 +1,11 @@
 //出口地址需要绝对地址，所以使用node.js的函数来进行地址的获取
 const path = require('path');
-
+//对最后导出的文件添加版权归属注释
+const webpack = require('webpack');
+//把工作目录的index.html在打包的时候编译进dist文件夹。这样就可以在发布的时候直接发布dist
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+//打包压缩输出的js。减少内存空间
+const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
 	//入口地址
@@ -10,7 +15,7 @@ module.exports = {
 		// path: 动态获取路径； __dirname  node的全局地址。获取当前文件地址
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		publicPath: 'dist/' //匹配所有url，在url前都会加一个dist/
+		// publicPath: 'dist/' //匹配所有url，在url前都会加一个dist/
 	},
 	module: {
 		rules: [{
@@ -67,6 +72,24 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js' // 用 webpack 1 时需用 'vue/dist/vue.common.js'
     }
-  }
+  },
+	plugins: [
+		new webpack.BannerPlugin('最终版权归YBM所有'),
+		new HtmlWebpackPlugin({
+				template: "index.html"
+		}),
+		new UglifyjsPlugin()
+		
+	],
+	devServer:{
+		//监听的文件
+		contentBase: './dist',
+		//启动监听后就打开浏览器
+		inline: true,
+		// port: "9001" 默认8080
+		// historyApiFallback :    //在SPA（单页面复应用）
+	},		
+		
 
 }
+ 
