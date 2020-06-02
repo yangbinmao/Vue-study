@@ -5,6 +5,16 @@
      <button @click="homeClick">首页按钮</button>
      <button @click="aboutClick">关于按钮</button>
      <router-link v-bind:to="'/user/'+userId" tag="button"  replace >用户</router-link>
+     <!-- <router-link to='/Profile' tag='button'>Profile</router-link> -->
+     <router-link :to="{
+       path:'/Profile',
+       query:{
+         name:'ybm',
+         age:'18',
+         height:'180'
+        }
+       }" 
+       tag='button'>档案</router-link>
      <router-view></router-view>
   </div>
 </template>
