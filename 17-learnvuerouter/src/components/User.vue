@@ -6,6 +6,8 @@
       <h2>{{$route.params.userId}}</h2>
       
       <h2>{{useId}}</h2>
+
+      <button @click="btnClik">获取$route</button>
     </div>
 </template>
 
@@ -15,6 +17,12 @@
     computed:{
       useId(){
         return this.$route.params.userId
+      }
+    },
+    methods: {
+      btnClik(){
+        console.log(this.$route)
+        console.log(this.$router);
       }
     }
   }
