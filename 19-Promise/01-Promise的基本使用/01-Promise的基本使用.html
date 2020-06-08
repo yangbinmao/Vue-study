@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.使用setTimeout
+    // setTimeout(()=>{
+    //     console.log("hello word");
+    // },1000)
+
+  
+    // 什么情况下会用到Promise?
+    //一般情况下是有异步操作时，使用Promise对这个异步操作进行分装
+    //new -> 构造函数(1.保存一些状态信息，2.执行传入的函数) 
+    //在执行我们传入的回调函数时，会传入两个参数，resolve，reject，本身又是函数
+    //在异步调用的时候resolve,reject只会执行一个。（就是一般都是在success写resolve，在error写reject）
+new Promise((resolve,reject)=>{
+    setTimeout((data)=>{
+        
+        console.log(data);
+        //成功的时候调用resolve()
+        resolve("data");
+        //失败的时候调用reject()
+        reject('error message')
+    },1000)
+}).then((data)=>{
+    console.log(data);
+    
+    // 在回调里面调用reslove()后再这里写 处理回调的代码
+}).catch((err)=>{
+    console.log(err)
+})
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //如果一个需求是指需要异步请求同时返回后才可以执行就可以使用Promise.all函数
+    // Promise.all(参数是一个数组)
+    // 这个数组里面就可以放入多个Promise对象
+    //在all函数最后接then，就是指，等到这Promise对象都reslove后，才会执行，
+    //then里面返回的是一个数组，内容是按照Promise对象进行排序的。
+    Promise.all([
+        new Promise((resolve,reject)=>{
+          $.ajax({
+            url:"url1",
+            success(data){
+              resolve(data)
+            }
+
+          })
+        }),
+        new Promise((resolve,reject)=>{
+          $.ajax({
+            url:"url2",
+            success(data){
+              resolve(data)
+            }
+
+          })
+        })
+    ]).then(results=>{
+      // results[0]就是第一个ajax请求返回的
+      // results[1]就是第二个ajax请求返回的
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //网络请求：aaa
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve("aaa")
+      },1000)
+    }).then((res)=>{
+       console.log('第一次处理的res :>> ', res);
+      return new Promise((resolve)=>{
+        //对结果进行第一次处理
+        resolve(res+'111')
+      })
+    }).then(res=>{
+      console.log('第二次 处理res :>> ', res);
+      return new Promise((resolve)=>{
+        //对结果第二次处理
+        resolve(res + '2222')
+      })
+    }).then(res=>{
+      console.log('第三层处理代码res :>> ', res);
+    })
+
+
+
+    //new Promose(resolve=>resolve(结果))简写
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve("aaa")
+      },1000)
+    }).then((res)=>{
+       console.log('第一次处理的res :>> ', res);
+      return Promise.resolve(res+'111')
+    }).then(res=>{
+      console.log('第二次 处理res :>> ', res);
+      return Promise.resolve(res+'222')
+    }).then(res=>{
+      console.log('第三层处理代码res :>> ', res);
+    })
+
+
+    //在简写，省略到Promise.resolve()
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve("aaa")
+      },1000)
+    }).then((res)=>{
+       console.log('第一次处理的res :>> ', res);
+      return res+'111'
+    }).then(res=>{
+      console.log('第二次 处理res :>> ', res);
+      return res+'222'
+    }).then(res=>{
+      console.log('第三层处理代码res :>> ', res);
+    })
+
+    //ps一个如果返回有错误写法
+    new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve("aaa")
+      },1000)
+    }).then((res)=>{
+       console.log('第一次处理的res :>> ', res);
+      //  return res+'111'
+
+      //以下两种方式都可以捕获异常
+      return Promise.reject("第一次就出错了。");//这里就直接去catch了
+      // throw "第一次就出错了。"  //也能被catch捕获
+    }).then(res=>{
+      console.log('第二次 处理res :>> ', res);
+      return res+'222'
+    }).then(res=>{
+      console.log('第三层处理代码res :>> ', res);
+    }).catch(err=>{
+      console.log('err :>> ', err);
+    })
+  </script>
+</body>
+</html>
