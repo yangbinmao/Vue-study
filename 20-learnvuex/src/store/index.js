@@ -8,12 +8,18 @@ Vue.use(Vuex);
 //2.创建对象
 const store=new Vuex.Store({
   state: {
-    //保存变量状态
+    //保存变量状态,给定默认值
     counter: 1000
     
   },
   mutations: {
-    
+    //方法
+    increment(state){
+      state.counter++
+    },
+    decrement(state){
+      state.counter--
+    }
   },
   actions: {
     
