@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{$store.state.counter}}</h2>
+    <h2>{{$store.getters.more20stu}}</h2>
   </div>
 </template>
 
