@@ -3,21 +3,26 @@
     <h2>-------------app内容-------------------</h2>
     <h2>app内的message:{{message}}</h2>
     <h2>app内的couter:{{counter}}</h2>
-    <h2>全局的counter:{{$store.state.counter}}</h2>
     <h2>----------VueX的state属性------------</h2>
-     <button @click="addClick">++</button>
-     <button @click="subClick">--</button>
-     <button @click="subCountClick(5)">++5</button>
-
+    <h2>全局的counter:{{$store.state.counter}}</h2>
+   <h2>----------VueX的mutations属性：修改全局变量的值的方法--------</h2>
+    <h3>VueX的mutations属性不带参数</h3>
+     <button @click="addClick">+1</button>
+     <button @click="subClick">-1</button>
+     <h3>VueX的mutations属性带参数</h3>
+     <button @click="addCountClick(5)">+5</button>
+     <button @click="addCountClick(10)">+10</button>
+     <button @click="addstu">添加学生</button>
     <!-- 使用vuex -->
-    <h2>------------Vuex的getters属性---------------</h2>
+    <h2>------------Vuex的getters属性：获取经过处理后的全局变量参数值，但是不改变本身值的大小---------------</h2>
     <!-- 需要对全局属性（vuex里的store）内的值进行操作但不改变本身值并且输出，使用它的getters方法（类似vue的计算属性（computed）） -->
     <!--使用$store.getters.getters内的方法名   因为是计算属性。所以不需要加（）和vue一样 -->
-    <h2>{{$store.getters.powerCounter}}</h2>
-    <h2>{{$store.getters.more20stu}}</h2>
+
+    <h2>VueX通过getters获取powerCounter值：{{$store.getters.powerCounter}}</h2>
+    <h2>VueX通过getters获取more20stu值：{{$store.getters.more20stu}}</h2>
     <!--在getters方法里面定义方法，把自己放进去 -->
     <h3>在getters方法里面定义方法，把自己放进去</h3>
-    <h2>{{$store.getters.more20stuLength}}</h2>
+    <h2>VueX通过getters获取more20stuLength值：{{$store.getters.more20stuLength}}</h2>
     <!-- getters筛选带参数的情况 -->
     <h3>getters筛选带参数的情况 </h3>
     <h2>{{$store.getters.moreAgeStu(19)}}</h2>
@@ -53,6 +58,9 @@ export default {
     },
     addCountClick(count){
       this.$store.commit('incrementCount',count)
+    },
+    addstu(){
+      this.$store.commit('addStudent',{id:114,name:'ybm4',age:22},)
     }
   }
 

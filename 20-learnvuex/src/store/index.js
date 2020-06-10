@@ -26,6 +26,8 @@ const store=new Vuex.Store({
     //在这里面创建的方法参数可以只是state(其实都是会带上state的，不然怎么改变值)
     //也可以继续添加参数，后边的参数就等于你需要对变量值操作的变化值（就是的传过来的参数）
 
+    //参数被称为是mutation的载荷（Payload）,可以是一个值，也可以是一个对象
+
     //Vuex官方唯一推荐修改全局变量的值的方式，就是使用mutations方式。
     //通过mutations更新的方式:在任何组件内调用$store.commit.('方法名')，就可以调用mutations里面的方法。
     increment(state){
@@ -37,6 +39,10 @@ const store=new Vuex.Store({
     //通过mutations带参的更新的方式:在任何组件内调用$store.commit.('方法名'，参数值)，就可以调用mutations里面的方法。
     incrementCount(state,count){ //count就等于是传过来的变量
       state.counter+=count
+    },
+    addStudent(state,stu){//count就等于是传过来的对象
+      //如果是对象添加，数组的添加方法是push.
+      state.students.push(stu)
     }
   },
   actions: {
