@@ -17,7 +17,7 @@ new Vue({
   render: h => h(App)
 })
 
-
+//以下都是在使用全局的axios以及配置来进行网络请求
 //1.axios的基本使用
 axios({
   url: '/ip',
@@ -61,3 +61,31 @@ axios.all([
   console.log('error');
   
 })
+
+console.log('--------------分割---------');
+
+const instance1 = axios.create ({
+  baseURL:"http://127.0.0.1:8877/api/voice",
+  // timeout:5000
+})
+
+instance1({
+  url:'/pageList',
+  params:{
+    page:1,
+    size:5
+  }
+}).then(res=>console.log(res))
+
+//5.封装request模块
+
+console.log('---------------封装request模块--------------');
+
+import {request} from './network/request'
+
+
+request({
+  url: '/ip',
+}).then(res => console.log('res',res)
+).catch(err => console.log('err',err)
+)

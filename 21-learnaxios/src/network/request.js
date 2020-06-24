@@ -4,11 +4,35 @@ import axios from 'axios'
 //但是如果以后要替换axios的第三方没有封装promise就要像，方法三一样做promise封装，这样就不用改组件内的请求方式什么的。
 export function request(config){
   
-     //创建axios
+     //1.创建axios实例
     const instance = axios.create({
       baseURL:'http://httpbin.org',
       timeout: 100000
     })
+    //2.创建axios拦截器
+      //2.1请求拦截
+        //为什么要请求拦截
+        //1、比如config中的信息不符合服务器的要求。
+        //2、比如每次发送网络请求时，都希望在界面显示一个请求的图标
+        //3.某些网络请求（比如登录（token）） 必须提携一些特殊的信息
+    instance.interceptors.request.use(config =>{
+        console.log(config);
+        return config
+        
+    },err => {
+        //一般是没有请求错误。
+        console.log(err);
+        
+    });
+      //2.2响应拦截
+    instance.interceptors.response.use(res=>{
+      console.log(res);
+      return res.data
+    },err => {
+      console.log(err);
+      
+    });
+
 
      return instance(config)
 
